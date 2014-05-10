@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/1-6-10/esl.js"></script>
+</head>
+<body>
+    <div id="main" style="height:400px"></div>
+    <script type="text/javascript">
+        require.config({
+            paths:{ 
+                'echarts' : 'http://echarts.baidu.com/build/echarts',
+                'echarts/chart/pie' : 'http://echarts.baidu.com/build/echarts',
+                'echarts/chart/scatter':'http://echarts.baidu.com/build/echarts'
+            }
+        });
+        
+        require(
+            [
+                'echarts',
+                'echarts/chart/pie' ,
+                'echarts/chart/scatter'
+            ],
+         
+ function(ec) {
+             
+                var myChart = ec.init(document.getElementById('main')); 
+                
+     
+var sData1 = (function() {
+    var d = [ [395,3549,658.26,"PS2"],
+[446,2680,357.97,"PS"],
+[284,2783,483.25,"Wii"],
+[348,3542,533.92,"Xbox360"],
+[567,3077,340.66,"PS3"],
+[186,3989,372.48,"DS"],
+[412,1093,228.08,"NES"],
+[170,1607,187.75,"GB"],
+[343,1207,132.98,"SNES"],
+[132,1640,211.81,"GBA"],
+[300,1781,105.61,"PSP"],
+[389,978,191.8,"Xbox"],
+[289,395,139.37,"N64"],
+[259,673,135.02,"GameCube"],
+[346,802,95.42,"GEN"],
+[260,839,46.08,"3DS"],
+[796,497,118.5,"Atari2600"],
+[272,650,34.66,"DC"],
+[595,737,6.91,"Saturn"],
+[258,334,21.43,"GameGear"],
+[300,223,11.28,"WiiU"],
+[255,421,7.33,"PSV"],
+[400,193,7.61,"PS4"],
+[500,120,8.73,"XBoxone"]
+
+
+
+
+];
+    var len = 24;
+    var value;
+
+    return d;
+})();
+     
+var sData2 = (function() {
+    var d = [ [395,3549,563.77,"PS2"],
+[446,2680,280.9,"PS"],
+[284,2783,248.99,"Wii"],
+[348,3542,238.89,"Xbox360"],
+[567,3077,276.54,"PS3"],
+[186,3989,184.48,"DS"],
+[412,1093,42.21,"NES"],
+[170,1607,147.3,"GB"],
+[343,1207,47.25,"SNES"],
+[132,1640,81.84,"GBA"],
+[300,1781,65.82,"PSP"],
+[389,978,65.95,"Xbox"],
+[289,395,41.04,"N64"],
+[259,673,40,"GameCube"],
+[346,802,48.5,"GEN"],
+[260,839,27.84,"3DS"],
+[796,497,8.4,"Atari2600"],
+[272,650,14.05,"DC"],
+[595,737,3.7,"Saturn"],
+[258,334,10.05,"GameGear"],
+[300,223,5.89,"WiiU"],
+[255,421,6.08,"PSV"],
+[400,193,6.81,"PS4"],
+[500,120,3.58,"XBoxone"]
+
+
+
+            ];
+    var len = sData1.length;
+  return d;
+})();
+
+     
+var sData3 = (function() {
+    var d = [[395,3549,222.6,"PS2"],
+[446,2680,244.1,"PS"],
+[284,2783,69.16,"Wii"],
+[348,3542,12.68,"Xbox360"],
+[567,3077,70.86,"PS3"],
+[186,3989,178.59,"DS"],
+[412,1093,225.86,"NES"],
+[170,1607,157.06,"GB"],
+[343,1207,194.85,"SNES"],
+[132,1640,73.1,"GBA"],
+[300,1781,77.84,"PSP"],
+[389,978,3.88,"Xbox"],
+[289,395,39.75,"N64"],
+[259,673,27.54,"GameCube"],
+[346,802,28.43,"GEN"],
+[260,839,55.03,"3DS"],
+[796,497,0,"Atari2600"],
+[272,650,15.35,"DC"],
+[595,737,35.67,"Saturn"],
+[258,334,6.03,"GameGear"],
+[300,223,4.63,"WiiU"],
+[255,421,8.15,"PSV"],
+[400,193,1.05,"PS4"],
+[500,120,0,"XBoxone"]
+
+
+
+            ];
+    var len = sData1.length;
+  return d;
+})();
+
+var sData4 = (function() {
+    var d = [[395,3549,217.32,"PS2"],
+[446,2680,79.04,"PS"],
+[284,2783,116.51,"Wii"],
+[348,3542,102.64,"Xbox360"],
+[567,3077,136.19,"PS3"],
+[186,3989,79.5,"DS"],
+[412,1093,5.33,"NES"],
+[170,1607,9,"GB"],
+[343,1207,3.98,"SNES"],
+[132,1640,10.66,"GBA"],
+[300,1781,45.93,"PSP"],
+[389,978,9.83,"Xbox"],
+[289,395,5,"N64"],
+[259,673,6.05,"GameCube"],
+[346,802,3.45,"GEN"],
+[260,839,6.72,"3DS"],
+[796,497,1.9,"Atari2600"],
+[272,650,0.83,"DC"],
+[595,737,1.06,"Saturn"],
+[258,334,0.75,"GameGear"],
+[300,223,1.57,"WiiU"],
+[255,421,1.69,"PSV"],
+[400,193,1.57,"PS4"],
+[500,120,0.71,"XBoxone"]
+
+
+
+
+            ];
+    var len = sData1.length;
+  return d;
+})();
+     
+     
+     
+option = {
+    color : ['rgba(255, 69, 0, 0.5)', 'rgba(30, 144, 255, 0.5)','rgba(122, 93, 223, 0.9)','rgba(196, 255, 184, 0.9)'],
+    title : {
+        text: 'scatter-pie plot',
+    },
+    tooltip : {
+        trigger: 'item',
+      
+        formatter: "{b} : {c} ({d}%)"
+    },
+    
+    
+    
+    
+    
+    
+    
+    
+    legend : {
+        data : ['North America', 'Europe','Japan', 'Rest of World']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    xAxis : [
+        {
+            type : 'value',
+            splitNumber: 10,
+            splitArea: {show:true}
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            splitNumber: 10,
+            splitArea : {show : true}
+        }
+    ],
+    animation: false,
+    series : [
+        {
+            type:'scatter',
+            symbol: 'none',
+            data: sData1
+        },
+        {
+            type:'scatter',
+            symbol: 'none',
+            data: sData2
+        },
+         {
+            type:'scatter',
+            symbol: 'none',
+            data: sData3
+        },
+          {
+            type:'scatter',
+            symbol: 'none',
+            data: sData4
+        }
+    ]
+};
+
+function buildPieSeries(){
+    var xAxis = myChart.component.xAxis.getAxis(0);
+    var yAxis = myChart.component.yAxis.getAxis(0);
+    var len = sData1.length;
+    option.series = option.series.slice(0,2);
+    while (len--) {
+        option.series.push({
+            type: 'pie',
+            itemStyle : {
+                normal : {
+                    label : {
+                        show : false
+                    },
+                    labelLine : {
+                        show : false
+                    }
+                }
+            },
+            radius : (sData1[len][2] + sData2[len][2]+sData3[len][2]+sData4[len][2])/15,
+            center: [
+                xAxis.getCoord(sData1[len][0]), 
+                yAxis.getCoord(sData1[len][1])
+            ],
+            data: [
+                {name: 'North America', value: sData1[len][2]},
+                {name: 'Europe', value: sData2[len][2]},
+                {name: 'Japan', value: sData3[len][2]},
+             {name: 'Rest of World', value: sData4[len][2]}
+            ]
+        })
+    }
+    option.animation = true;
+    myChart.setOption(option);
+    window.onresize = buildPieSeries;
+}
+// 构造出一系列的饼图代替原来的散点，需要在散点画出来后才能获取到散点的坐标，setTimeout！
+setTimeout(buildPieSeries, 100);
+                    
+        
+               myChart.setOption(option); 
+            }
+        );
+        
+
+    </script>
+</body>

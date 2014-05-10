@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 来自百度CDN -->
+    <script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/1-6-10/esl.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="height:400px"></div>
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths:{ 
+                'echarts' : 'http://echarts.baidu.com/build/echarts',
+                'echarts/chart/pie' : 'http://echarts.baidu.com/build/echarts',
+                'echarts/chart/scatter':'http://echarts.baidu.com/build/echarts'
+            }
+        });
+        
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/pie' ,// 使用柱状图就加载bar模块，按需加载
+                'echarts/chart/scatter'
+            ],
+         
+ function(ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('main')); 
+                
+// 虚拟构造同横纵坐标的两组数据
+     
+var sData1 = (function() {
+    var d = [ [395,3549,53.65,"PS2"],
+[446,2680,38.94,"PS"],
+[284,2783,45.2,"Wii"],
+[348,3542,46.51,"Xbox360"],
+[567,3077,28.45,"PS3"],
+[186,3989,57.37,"DS"],
+[412,1093,33.49,"NES"],
+[170,1607,43.18,"GB"],
+[343,1207,22.88,"SNES"],
+[132,1640,40.39,"GBA"],
+[300,1781,21.4,"PSP"],
+[389,978,15.77,"Xbox"],
+[289,395,20.11,"N64"],
+[259,673,12.55,"GameCube"],
+[346,802,16.98,"GEN"],
+[260,839,13.41,"3DS"],
+[796,497,23.54,"Atari2600"],
+[272,650,3.9,"DC"],
+[595,737,1.83,"Saturn"],
+[258,334,5.4,"GameGear"],
+[300,223,2.63,"WiiU"],
+[255,421,1.92,"PSV"],
+[400,193,3.42,"PS4"],
+[500,120,3.07,"XBoxone"]
+
+
+
+];
+    var len = 24;
+    var value;
+
+    return d;
+})();
+     
+var sData2 = (function() {
+    var d = [ [395,3549,55.28,"PS2"],
+[446,2680,36.91,"PS"],
+[284,2783,33.75,"Wii"],
+[348,3542,25.23,"Xbox360"],
+[567,3077,32.98,"PS3"],
+[186,3989,52.07,"DS"],
+[412,1093,8.3,"NES"],
+[170,1607,40.05,"GB"],
+[343,1207,8.15,"SNES"],
+[132,1640,21.31,"GBA"],
+[300,1781,24.14,"PSP"],
+[389,978,7.17,"Xbox"],
+[289,395,6.35,"N64"],
+[259,673,4.44,"GameCube"],
+[346,802,8.39,"GEN"],
+[260,839,12.55,"3DS"],
+[796,497,3.35,"Atari2600"],
+[272,650,1.91,"DC"],
+[595,737,1.12,"Saturn"],
+[258,334,3.23,"GameGear"],
+[300,223,1.31,"WiiU"],
+[255,421,2.54,"PSV"],
+[400,193,2.65,"PS4"],
+[500,120,1.07,"XBoxone"]
+
+
+            ];
+    var len = sData1.length;
+  return d;
+})();
+
+     
+var sData3 = (function() {
+    var d = [[395,3549,23.18,"PS2"],
+[284,2783,12.76,"Wii"],
+[446,2680,19.36,"PS"],
+[348,3542,1.66,"Xbox360"],
+[567,3077,9.96,"PS3"],
+[186,3989,33.01,"DS"],
+[412,1093,19.35,"NES"],
+[170,1607,32.47,"GB"],
+[343,1207,17.17,"SNES"],
+[132,1640,16.96,"GBA"],
+[300,1781,19.98,"PSP"],
+[389,978,0.53,"Xbox"],
+[289,395,5.54,"N64"],
+[259,673,4.04,"GameCube"],
+[346,802,3.58,"GEN"],
+[260,839,15.52,"3DS"],
+[796,497,0,"Atari2600"],
+[272,650,2.25,"DC"],
+[595,737,5.8,"Saturn"],
+[258,334,1.78,"GameGear"],
+[300,223,1.72,"WiiU"],
+[255,421,2.81,"PSV"],
+[400,193,0.55,"PS4"],
+[500,120,0,"XBoxone"]
+
+
+            ];
+    var len = sData1.length;
+  return d;
+})();
+
+var sData4 = (function() {
+    var d = [[395,3549,25.57,"PS2"],
+[446,2680,9.04,"PS"],
+[284,2783,9.28,"Wii"],
+[348,3542,7.87,"Xbox360"],
+[567,3077,11.36,"PS3"],
+[186,3989,12.43,"DS"],
+[412,1093,0.77,"NES"],
+[170,1607,2.99,"GB"],
+[343,1207,0.9,"SNES"],
+[132,1640,2.85,"GBA"],
+[300,1781,15.26,"PSP"],
+[389,978,1.18,"Xbox"],
+[289,395,0.93,"N64"],
+[259,673,0.71,"GameCube"],
+[346,802,0.59,"GEN"],
+[260,839,2.8,"3DS"],
+[796,497,0.75,"Atari2600"],
+[272,650,0.14,"DC"],
+[595,737,0.07,"Saturn"],
+[258,334,0.21,"GameGear"],
+[300,223,0.43,"WiiU"],
+[255,421,0.88,"PSV"],
+[400,193,0.74,"PS4"],
+[500,120,0.29,"XBoxone"]
+
+
+
+            ];
+    var len = sData1.length;
+  return d;
+})();
+     
+     
+     
+option = {
+    color : ['rgba(255, 69, 0, 0.5)', 'rgba(30, 144, 255, 0.5)','rgba(122, 93, 223, 0.9)','rgba(196, 255, 184, 0.9)'],
+    title : {
+        text: 'scatter-pie plot',
+    },
+    tooltip : {
+        trigger: 'item',
+      
+        formatter: "{b} : {c} ({d}%)"
+    },
+    
+    
+    
+    
+    
+    
+    
+    
+    legend : {
+        data : ['North America', 'Europe','Japan', 'Rest of World']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    xAxis : [
+        {
+            type : 'value',
+            splitNumber: 10,
+            splitArea: {show:true}
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            splitNumber: 10,
+            splitArea : {show : true}
+        }
+    ],
+    animation: false,
+    series : [
+        {
+            type:'scatter',
+            symbol: 'none',
+            data: sData1
+        },
+        {
+            type:'scatter',
+            symbol: 'none',
+            data: sData2
+        },
+         {
+            type:'scatter',
+            symbol: 'none',
+            data: sData3
+        },
+          {
+            type:'scatter',
+            symbol: 'none',
+            data: sData4
+        }
+    ]
+};
+
+function buildPieSeries(){
+    var xAxis = myChart.component.xAxis.getAxis(0);
+    var yAxis = myChart.component.yAxis.getAxis(0);
+    var len = sData1.length;
+    option.series = option.series.slice(0,2);
+    while (len--) {
+        option.series.push({
+            type: 'pie',
+            itemStyle : {
+                normal : {
+                    label : {
+                        show : false
+                    },
+                    labelLine : {
+                        show : false
+                    }
+                }
+            },
+            radius : (sData1[len][2] + sData2[len][2]+sData3[len][2]+sData4[len][2])/1.7,
+            center: [
+                xAxis.getCoord(sData1[len][0]), 
+                yAxis.getCoord(sData1[len][1])
+            ],
+            data: [
+                {name: 'North America', value: sData1[len][2]},
+                {name: 'Europe', value: sData2[len][2]},
+                {name: 'Japan', value: sData3[len][2]},
+             {name: 'Rest of World', value: sData4[len][2]}
+            ]
+        })
+    }
+    option.animation = true;
+    myChart.setOption(option);
+    window.onresize = buildPieSeries;
+}
+// 构造出一系列的饼图代替原来的散点，需要在散点画出来后才能获取到散点的坐标，setTimeout！
+setTimeout(buildPieSeries, 100);
+                    
+        
+               myChart.setOption(option); 
+            }
+        );
+        
+
+    </script>
+</body>
