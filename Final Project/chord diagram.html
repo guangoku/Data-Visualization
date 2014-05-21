@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/1-6-10/esl.js"></script>
+</head>
+<body>
+    <div id="main" style="height:400px"></div>
+    <script type="text/javascript">
+        require.config({
+            paths:{ 
+                'echarts' : 'http://echarts.baidu.com/build/echarts',
+                'echarts/chart/chord' : 'http://echarts.baidu.com/build/echarts',
+            }
+        });
+        
+        require(
+            [
+                'echarts',
+                'echarts/chart/chord' ,
+            ],
+         
+
+     
+function (ec) {
+        var myChart =ec.init(document.getElementById('main')); 
+     
+     
+var option = {
+    color : [
+        '#FBB367','#80B1D2','#FB8070','#CC99FF','#B0D961',
+        '#99CCCC','#BEBBD8','#FFCC99','#8DD3C8','#FF9999',
+        '#CCEAC4','#BB81BC','#FBCCEC','#CCFF66','#99CC66',
+        '#66CC66','#FF6666','#FFED6F','#ff7f50','#87cefa',
+    ],
+    title : {
+        text : 'Chord Diagram of categories',
+        x:'right',
+        y:'bottom'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter : function(params) {
+            var g1 = params[1];
+            var serie = params[0];
+            var g2 = params[3];
+            var data = params[2];
+            var data2 = params[4];
+            if (data2) {
+                if (data > data2) {
+                    return [g1, serie, g2].join(' ');
+                } else {
+                    return [g2, serie, g1].join(' ');
+                }
+            } else {
+                return g1
+            }
+        }
+    },
+    legend : {
+        data : [
+                'Mexican',
+                'Sandwiches',
+                'American(Traditional)',
+                'Fast Food',
+                'Pizza',
+
+    
+            
+                   ],
+        orient : 'vertical',
+        x : 'left'
+    },
+    series : [
+        {
+            "type": "chord",
+            "showScaleText": false,
+            "data": [
+                {"name": "Mexican"},
+                {"name": "Sandwiches"},
+                {"name": "American(Traditional)"},
+                {"name": "Fast Food"},
+                {"name": "Pizza"}
+            ],
+            "matrix": [
+[0,	1,	9,	95,	0],
+[1,	0,	23,	45,	80],
+[9,	23,	0,	50,	7],
+[95,	45,	50,	0,	15],
+[0,	80,	7,	15,	0]
+
+            ]
+        },
+   
+
+    ]
+};
+// 构造出一系列的饼图代替原来的散点，需要在散点画出来后才能获取到散点的坐标，setTimeout！
+                    
+        
+               myChart.setOption(option); 
+            }
+        );
+        
+
+    </script>
+</body>
