@@ -61,12 +61,19 @@ The biggest problem for me here is the calculation of the matrix used by chord d
 
 (At this time, I realized that the data set that I used is exactly the same with Jiun. So I decided to make something different with her works.) 
 I generated several maps of Phoenix City to see the geographic distribution of the restaurants.First is the overall map. Although I am not familiar with Phoenix, I could know that the center of the city might be the area with more restaurants.
+
 ![map1-total](https://github.com/guangoku/Data-Visualization/blob/master/Final%20Project/map1-total.png?raw=true)
+
 Then I divided the samples by different groups to see whether we can find something interesting. The map divided by rating stars of each restaurant.
+
 ![map2-stars](https://github.com/guangoku/Data-Visualization/blob/master/Final%20Project/map2-stars.png?raw=true)
+
 Divided by Price Range:
+
 ![map3-price-range](https://github.com/guangoku/Data-Visualization/blob/master/Final%20Project/map3-pricerange.png?raw=true)
+
 Divided by Alcohol:
+
 ![map4-alcohol](https://github.com/guangoku/Data-Visualization/blob/master/Final%20Project/map4-bar.png?raw=true)
 
 We can see that the city center seems to have more expensive and high-rating restaurants, while the geographic distribution seems to have nothing to do with whether they offer alcohol or not.
